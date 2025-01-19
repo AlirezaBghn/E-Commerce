@@ -1,24 +1,23 @@
-import { useState, useEffect } from "react";
+import { useBasket } from "../Context/BasketContext";
 import { useNavigate } from "react-router-dom";
 
 function Basket() {
-  const [basketItems, setBasketItems] = useState([]);
+  const { basketItems, removeFromBasket } = useBasket();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const item = localStorage.getItem("cart");
-    const parsedItems = item ? JSON.parse(item) : [];
-    setBasketItems(parsedItems);
-  }, []);
-
   const handleCheckout = () => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (isLoggedIn === "true") {
-      alert("You are logged in! Proceeding to checkout...");
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (isLoggedIn) {
+      if (basketItems.length > 0) {
+        alert("Proceeding to checkout...");
+        navigate("/checkout"); 
+      } else {
+        alert("Your basket is empty. Add items before checkout.");
+      }
     } else {
-      alert("You are not logged in! Redirecting to login page...");
-      navigate("/Login");
-    }
+      alert("Please log in to proceed to checkout.");
+      navigate("/Login"); 
   };
 
   return (
@@ -29,7 +28,7 @@ function Basket() {
           onClick={handleCheckout}
           className="btn btn-danger bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md shadow"
         >
-          Proceed to checkout
+          Proceed to Checkout
         </button>
       </div>
 
@@ -57,14 +56,7 @@ function Basket() {
                 </p>
                 <div className="card-actions mt-4 flex justify-end">
                   <button
-                    onClick={() => {
-                      const newItems = basketItems.filter(
-                        (_, i) => i !== index
-                      );
-                      setBasketItems(newItems);
-                      localStorage.setItem("cart", JSON.stringify(newItems));
-                      alert("Item removed from cart");
-                    }}
+                    onClick={() => removeFromBasket(index)}
                     className="btn btn-danger bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md shadow"
                   >
                     Remove
@@ -75,7 +67,7 @@ function Basket() {
           ))}
         </div>
       ) : (
-        <p className="text-gray-500">Your cart is empty.</p>
+        <p className="text-gray-500">Your basket is empty.</p>
       )}
     </div>
   );
