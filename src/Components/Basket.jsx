@@ -11,13 +11,14 @@ function Basket() {
     if (isLoggedIn) {
       if (basketItems.length > 0) {
         alert("Proceeding to checkout...");
-        navigate("/checkout"); 
+        navigate("/checkout");
       } else {
         alert("Your basket is empty. Add items before checkout.");
       }
     } else {
       alert("Please log in to proceed to checkout.");
-      navigate("/Login"); 
+      navigate("/Login");
+    }
   };
 
   return (
