@@ -3,7 +3,9 @@ import { createContext, useContext, useState } from "react";
 const BasketContext = createContext();
 
 export const BasketProvider = ({ children }) => {
-  const [basketItems, setBasketItems] = useState([]);
+  const [basketItems, setBasketItems] = useState(
+    JSON.parse(localStorage.getItem("cart"))
+  );
 
   const addToBasket = (product) => {
     setBasketItems((prevItems) => [...prevItems, product]);

@@ -17,10 +17,9 @@ function Login() {
       });
 
       const data = await response.json();
-
       if (response.ok) {
         localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("userId", data.user.id);
+        // localStorage.setItem("userId", data.user.id);
         alert("Login successful!");
         navigate("/");
       } else {

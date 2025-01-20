@@ -40,6 +40,7 @@ function Products() {
             <p className="text-sm text-gray-600 mt-2 line-clamp-3">
               {product.description}
             </p>
+
             <p className="text-xl font-semibold text-green-600 mt-4">
               ${product.price}
             </p>

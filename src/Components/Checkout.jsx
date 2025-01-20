@@ -1,4 +1,3 @@
-import React from "react";
 import { useBasket } from "../Context/BasketContext";
 
 function Checkout() {

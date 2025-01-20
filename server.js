@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 import express from "express";
-import bodyParser from "body-parser";
 import cors from "cors";
 import pkg from "pg";
 
@@ -18,7 +17,7 @@ const pool = new Pool({
 });
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Sign-up endpoint
 app.post("/api/signup", async (req, res) => {
