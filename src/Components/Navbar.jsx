@@ -7,15 +7,20 @@ function Navbar() {
 
   const handleSignOut = () => {
     localStorage.setItem("isLoggedIn", "false");
-    localStorage.removeItem("userEmail");
-    localStorage.removeItem("userPassword");
     alert("You have been signed out.");
     navigate("/");
   };
+  // npm install js-cookie
+  // import Cookies from "js-cookie";
 
+  // const handleSignOut = () => {
+  //   Cookies.remove("isLoggedIn");
+  //   alert("You have been signed out.");
+  //   navigate("/");
+  // };
   return (
     <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-500 via-purple-600 to-blue-500 text-white shadow-lg">
-      {/* Left side navigation links */}
+      {/* Left */}
       <ul className="flex space-x-6 text-lg font-medium">
         <li className="hover:text-gray-300">
           <Link to="/">Home</Link>
@@ -34,7 +39,7 @@ function Navbar() {
           </>
         )}
       </ul>
-
+      {/* Right */}
       {isLoggedIn && (
         <button
           onClick={handleSignOut}
