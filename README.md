@@ -16,14 +16,12 @@ Create a .env file in the root directory.
 Add your database connection string and other environment variables:
 
 DATABASE_URL=your_database_connection_string_here
-PORT=5003
+
 Run the Backend Server: Start the Express server using:
 
 npm run server
 Run the Frontend Development Server: Start the React app with Vite:
 npm run dev
-View the Application: Open your browser and navigate to:
-http://localhost:5173
 
 Scripts Available:
 npm run dev: Start the Vite development server.
